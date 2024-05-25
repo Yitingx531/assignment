@@ -1,5 +1,4 @@
 export type DateLike = Date | string;
-export type NullableString = string | null;
 
 export type LogEntryResponse = {
   id: string;
@@ -27,20 +26,4 @@ export enum HttpStatusCode {
   INVALID_DATA = 422,
   SERVER_ERROR = 500,
   UNIMPLEMENTED_ERROR = 501
-}
-
-export enum Severity {
-  Fatal = 'fatal',
-  Critical = 'critical',
-  Error = 'error',
-  Warning = 'warning',
-  Debug = 'debug',
-  Log = 'log',
-  Info = 'info',
-}
-
-export interface ErrorOptions {
-  code?: number;
-  originalError?: Error | unknown;
-  severity?: Severity;
 }

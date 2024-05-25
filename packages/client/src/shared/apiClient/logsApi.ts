@@ -5,10 +5,10 @@ export interface CreateLogEntryParams {
   logEntry: CreateLogEntryRequest;
 }
 
-export type FetchLogsResponse = LogEntryResponse[];
+export type FetchLogEntriesResponse = LogEntryResponse[];
 export type CreateLogEntryResponse = LogEntryResponse;
 
-export async function fetchLogs(logId: string): Promise<FetchLogsResponse> {
+export async function fetchLogEntries(logId: string): Promise<FetchLogEntriesResponse> {
   const res = await fetch(
     `/api/logs/${logId}/log-entries`,
     {
@@ -21,7 +21,7 @@ export async function fetchLogs(logId: string): Promise<FetchLogsResponse> {
   if (!res.ok) {
     throw new Error('Failed to fetch log entries');
   }
-  const logEntries: FetchLogsResponse = await res.json();
+  const logEntries: FetchLogEntriesResponse = await res.json();
   return logEntries;
 }
 

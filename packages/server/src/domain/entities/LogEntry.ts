@@ -1,4 +1,5 @@
-import { Entity, ValidationError } from "./Entity";
+import { ValidationError } from "../../shared/errors";
+import { Entity } from "./Entity";
 import { Uuid } from "./Uuid";
 
 interface LogEntryProps {
@@ -10,10 +11,6 @@ interface LogEntryProps {
 type CreateLogEntryProps = LogEntryProps;
 
 export class LogEntry extends Entity<LogEntryProps> {
-
-  protected constructor(props: LogEntryProps, id?: Uuid) {
-    super(props, id);
-  }
 
   static createFromPersistence(props: LogEntryProps, id: string) {
     return new LogEntry(props, Uuid.create(id));

@@ -21,6 +21,7 @@ module.exports = {
     },
   },
   rules: {
+    'class-methods-use-this': 'off',
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': [
       'error',
@@ -43,7 +44,20 @@ module.exports = {
     // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
     'import/no-default-export': 'warn',
     'import/prefer-default-export': 'off',
+    'no-underscore-dangle': [
+      'error',
+      {
+        allowAfterSuper: true,
+        allowAfterThis: true,
+        enforceInMethodNames: true,
+        enforceInClassFields: true,
+      },
+    ],
+
+    '@typescript-eslint/no-shadow': 'error',
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': ['error'],
+
+    '@typescript-eslint/no-useless-constructor': 'error',
+    'no-useless-constructor': 'off',
   },
 };
