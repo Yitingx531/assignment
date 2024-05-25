@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import { FetchLogEntriesResponse, fetchLogEntries } from '../shared/apiClient/logsApi';
 
 type UseLogEntriesParams = {
@@ -17,7 +17,7 @@ export const useLogEntries = ({
   const [logEntries, setLogEntries] = useState([] as FetchLogEntriesResponse);
   const [error, setError] = useState<unknown>();
 
-  const fetcher = useMemo(() => async () => {
+  const fetcher = useCallback(async () => {
     try {
       setIsLoading(true);
       if (cache[logId]) {
