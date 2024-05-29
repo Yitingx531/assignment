@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
-import { FetchLogsResponse, fetchLogs } from '../shared/apiClient/logsApi';
+import {useCallback, useEffect, useState} from 'react';
+import { FetchLogEntriesResponse, fetchLogEntries } from '../shared/apiClient/logsApi';
 
 type UseLogEntriesParams = {
   logId: string;
 };
 type Cache = {
-  key?: FetchLogsResponse,
+  [logId: string]: FetchLogEntriesResponse,
 }
 
 const cache: Cache = {};
@@ -14,18 +14,18 @@ export const useLogEntries = ({
   logId,
 }: UseLogEntriesParams) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [logEntries, setLogEntries] = useState([] as FetchLogsResponse);
+  const [logEntries, setLogEntries] = useState([] as FetchLogEntriesResponse);
   const [error, setError] = useState<unknown>();
 
-  const fetchLogEntries = useMemo(() => async () => {
+  const fetcher = useCallback(async () => {
     try {
       setIsLoading(true);
-      if (cache[logId as keyof Cache]) {
+      if (cache[logId]) {
         setIsLoading(false);
-        setLogEntries(cache[logId as keyof Cache] || []);
+        setLogEntries(cache[logId] || []);
       } else {
-        const result = await fetchLogs(logId);
-        cache[logId as keyof Cache] = result;
+        const result = await fetchLogEntries(logId);
+        cache[logId] = result;
         setIsLoading(false);
         setLogEntries(result);
       }
@@ -36,12 +36,12 @@ export const useLogEntries = ({
   }, [logId]);
 
   useEffect(() => {
-    fetchLogEntries();
-  }, [fetchLogEntries]);
+    fetcher();
+  }, [fetcher]);
 
   const refreshLogEntries = () => {
-    delete cache[logId as keyof Cache];
-    fetchLogEntries();
+    delete cache[logId];
+    fetcher();
   }
 
   return {

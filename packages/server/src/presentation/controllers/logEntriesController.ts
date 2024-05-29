@@ -1,8 +1,7 @@
 import { HttpStatusCode } from '@mapistry/take-home-challenge-shared';
 import { Router } from 'express';
 import { LogEntriesService } from '../../application/services/LogEntriesService';
-import { ValidationError } from '../../domain/entities/Entity';
-import { RecordNotFoundError } from '../../persistence/repositories/LogEntriesRepository';
+import { RecordNotFoundError, ValidationError } from '../../shared/errors';
 
 export const logEntriesController = Router();
 

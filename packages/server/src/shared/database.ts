@@ -36,5 +36,7 @@ export const logEntriesTable: LogEntriesRecord[] = [
 ];
 
 export function simulateDbSlowness(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}

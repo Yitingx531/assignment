@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { LOG_2_ID, LogEntryResponse } from "@mapistry/take-home-challenge-shared";
 import { LogEntriesRecord, logEntriesTable } from "../../shared/database";
 import { LogEntriesService } from './LogEntriesService';

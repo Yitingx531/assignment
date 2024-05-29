@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 
 export class Uuid {
+  // eslint-disable-next-line no-underscore-dangle
   private readonly _id: string;
 
   protected constructor(id: string) {
