@@ -15,7 +15,7 @@ We're genuinely not trying to trick you here, this is NOT a test on whether you 
 ## The Rules
 
 - **This is an open book/notes challenge.** Feel free to search and lookup anything that you think will help you. Treat this as if it was a ticket you were given rather than a test.
-- **We anticipate you spending approximately 3 - 4 hours to complete the challenge**. It's unlikely that you'll get to _everything_ you'd like to do within that time frame, so prioritize what you feel is most important, or what you think shows off your skills best. **At the end of the time, please commit what you have and open a PR against the main branch.** In the PR description, explain where you left off and what steps remain. Pretend you are leaving on vacation and need to pass off your work to another teammate.
+- **We anticipate you spending approximately 3 - 4 hours to complete the challenge**. It's unlikely that you'll get to _everything_ you'd like to do within that time frame, so prioritize what you feel is most important, or what you think shows off your skills best. **At the end of the time, please commit what you have and open a pull request against the main branch.** In the PR description, explain where you left off and what steps remain. Pretend you are leaving on vacation and need to pass off your work to another teammate.
 - **We will discuss your solution in a follow up call.** Be prepared to talk through the choices and tradeoffs you have made. You're welcome to leave notes or pseudo-code on anything you did not get to and we can discuss.
 - While we are providing a testing framework you are not required to use it. **If you want to add tests, feel free to use any framework you'd like.**
 - You may use either JavaScript or TypeScript to complete the solution. **Please use whatever language you are most comfortable with. We will not give preference to either language choice.**
@@ -23,6 +23,14 @@ We're genuinely not trying to trick you here, this is NOT a test on whether you 
 ## The Delivery
 
 Please create a repository in Github with the initial commit including only the code we have provided. Then create a branch and open a pull request against the `main` branch of this repository with your work. Treat it like any pull request you would open at work.
+
+Please [add the following engineers to your repository](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository) so we can look at your solution:
+
+- Adam Gooch (`adamgooch`)
+- Allie (`alliejanoch`)
+- Anastasia Kaplina (`kaplona`)
+- Magdalena Henke (`MagdalenaHenke`)
+- Samantha Rack (`srack`)
 
 ## Project Structure
 
@@ -41,7 +49,7 @@ These are the entry places to the client and server:
 
 We have built this project with the idea of minimizing setup time for candidates attempting to complete the challenge. In this process we have made a number of decisions regarding tooling that we think provide a robust, but easy to use development experience while giving you an idea of the type of development environment we use on a daily basis. Please feel free to modify the environment and tooling however you see fit.
 
-### Getting started
+### Running the app
 
 #### Monorepo root
 
