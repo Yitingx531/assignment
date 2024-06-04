@@ -1,20 +1,54 @@
 # Mapistry Take Home Challenge
 
-This is the Mapistry take home challenge. You will use this code base starter to finish building a client/server tic-tac-toe game. Further instructions can be found in the [Fullstack Challenge README](README_FULLSTACK.md).
+This is the Mapistry take home challenge.
 
-## Project structure
+## The Task
+
+This code starter provides the beginnings of an application that allows submitting, viewing and deleting log entries (numeric values connected to time stamps).
+
+We would like you to add the ability to _edit_ existing log entries.
+
+There are many other things that one can improve on in this codebase, as well as many other possible features to add to the application. Within the given time frame, please change or fix anything else you'd like that you feel makes the code better, or add any further features that you think would improve the app.
+
+We're genuinely not trying to trick you here, this is NOT a test on whether you find all of the hidden errors. We just want to see your approach to working within and improving on an existing code base/app, what you value, and what you choose to prioritize.
+
+## The Rules
+
+- **This is an open book/notes challenge.** Feel free to search and lookup anything that you think will help you. Treat this as if it was a ticket you were given rather than a test.
+- **We anticipate you spending approximately 3 - 4 hours to complete the challenge**. It's unlikely that you'll get to _everything_ you'd like to do within that time frame, so prioritize what you feel is most important, or what you think shows off your skills best. **At the end of the time, please commit what you have and open a pull request against the main branch.** In the PR description, explain where you left off and what steps remain. Pretend you are leaving on vacation and need to pass off your work to another teammate.
+- **We will discuss your solution in a follow up call.** Be prepared to talk through the choices and tradeoffs you have made. You're welcome to leave notes or pseudo-code on anything you did not get to and we can discuss.
+- You may use either JavaScript or TypeScript to complete the solution. **Please use whatever language you are most comfortable with. We will not give preference to either language choice.**
+
+## The Delivery
+
+Please create a repository in Github with the initial commit including only the code we have provided. Then create a branch and open a pull request against the `main` branch of this repository with your work. Treat it like any pull request you would open at work.
+
+Please [add the following engineers to your repository](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository#inviting-a-collaborator-to-a-personal-repository) so we can look at your solution:
+
+- Adam Gooch (`adamgooch`)
+- Allie (`alliejanoch`)
+- Anastasia Kaplina (`kaplona`)
+- Magdalena Henke (`MagdalenaHenke`)
+- Samantha Rack (`srack`)
+
+## Project Structure
 
 This project is built as a monorepo using [yarn workspaces](https://yarnpkg.com/features/workspaces). It contains 3 packages:
 
-1. `client` - The client and UI portion of the tic-tac-toe game
-1. `server` - The server and AI portion of the tic-tac-toe game
-1. `shared` - TypeScript types that are shared between the client and server
+1. `client` - The client and UI portion
+1. `server` - The server
+1. `shared` - TypeScript types and constants that are shared between the client and server
+
+These are the entry places to the client and server:
+
+- frontend: [App.tsx](./packages/client/src/components/App.tsx)
+- backend: [logEntriesController.ts](./packages/server/src/presentation/controllers/logEntriesController.ts)
 
 ## Development environment
 
 We have built this project with the idea of minimizing setup time for candidates attempting to complete the challenge. In this process we have made a number of decisions regarding tooling that we think provide a robust, but easy to use development experience while giving you an idea of the type of development environment we use on a daily basis. Please feel free to modify the environment and tooling however you see fit.
 
-### Getting started
+### Running the app
 
 #### Monorepo root
 
@@ -64,7 +98,7 @@ $> yarn test
 
 ### Node
 
-This project was built using Node 18 which is [an LTS version of Node](https://nodejs.org/en/about/releases/).
+This project was built using Node 20 which is [an LTS version of Node](https://nodejs.org/en/about/releases/).
 
 ### TypeScript
 
@@ -72,13 +106,9 @@ This project was built with [TypeScript](https://www.typescriptlang.org/docs/han
 
 ### Package management
 
-We've chosen [yarn v3](https://yarnpkg.com/getting-started/usage) as the package manager for this code base. Since we're using node v16.13+ you may use [Corepack](https://yarnpkg.com/getting-started/install) to install yarn if you don't already have it installed.
+We've chosen [yarn v4](https://yarnpkg.com/getting-started/usage) as the package manager for this code base. Since we're using node v20.12+ you may use [Corepack](https://yarnpkg.com/getting-started/install) to install yarn if you don't already have it installed.
 
-#### Yarn Primer
-
-It works similar to npm and many of the commands are similar
-
-- `yarn install` to install dependencies
+Yarn works similar to npm and many of the commands are similar, for example `yarn install` to install dependencies
 
 ### Bundling
 
@@ -96,4 +126,4 @@ We have chosen [Prettier](https://prettier.io/docs/en/index.html) as a code form
 
 ### Testing
 
-[Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) were chosen as the testing libraries for this project. You're free to add tests if they help you out in development.
+[Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) were chosen as the testing libraries for this project. If you're adding tests, you're free to use these.
