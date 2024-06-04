@@ -17,7 +17,6 @@ We're genuinely not trying to trick you here, this is NOT a test on whether you 
 - **This is an open book/notes challenge.** Feel free to search and lookup anything that you think will help you. Treat this as if it was a ticket you were given rather than a test.
 - **We anticipate you spending approximately 3 - 4 hours to complete the challenge**. It's unlikely that you'll get to _everything_ you'd like to do within that time frame, so prioritize what you feel is most important, or what you think shows off your skills best. **At the end of the time, please commit what you have and open a pull request against the main branch.** In the PR description, explain where you left off and what steps remain. Pretend you are leaving on vacation and need to pass off your work to another teammate.
 - **We will discuss your solution in a follow up call.** Be prepared to talk through the choices and tradeoffs you have made. You're welcome to leave notes or pseudo-code on anything you did not get to and we can discuss.
-- While we are providing a testing framework you are not required to use it. **If you want to add tests, feel free to use any framework you'd like.**
 - You may use either JavaScript or TypeScript to complete the solution. **Please use whatever language you are most comfortable with. We will not give preference to either language choice.**
 
 ## The Delivery
@@ -99,7 +98,7 @@ $> yarn test
 
 ### Node
 
-This project was built using Node 18 which is [an LTS version of Node](https://nodejs.org/en/about/releases/).
+This project was built using Node 20 which is [an LTS version of Node](https://nodejs.org/en/about/releases/).
 
 ### TypeScript
 
@@ -107,7 +106,7 @@ This project was built with [TypeScript](https://www.typescriptlang.org/docs/han
 
 ### Package management
 
-We've chosen [yarn v3](https://yarnpkg.com/getting-started/usage) as the package manager for this code base. Since we're using node v16.13+ you may use [Corepack](https://yarnpkg.com/getting-started/install) to install yarn if you don't already have it installed.
+We've chosen [yarn v4](https://yarnpkg.com/getting-started/usage) as the package manager for this code base. Since we're using node v20.12+ you may use [Corepack](https://yarnpkg.com/getting-started/install) to install yarn if you don't already have it installed.
 
 Yarn works similar to npm and many of the commands are similar, for example `yarn install` to install dependencies
 
@@ -127,4 +126,4 @@ We have chosen [Prettier](https://prettier.io/docs/en/index.html) as a code form
 
 ### Testing
 
-[Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) were chosen as the testing libraries for this project. If you're adding tests, you're free to use these, or whatever other framework you'd like.
+[Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) were chosen as the testing libraries for this project. If you're adding tests, you're free to use these.
