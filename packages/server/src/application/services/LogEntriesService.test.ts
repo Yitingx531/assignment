@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { LOG_2_ID, LogEntryResponse } from "@mapistry/take-home-challenge-shared";
-import { LogEntriesRecord, logEntriesTable } from "../../shared/database";
+import { Database, LogEntriesRecord } from "../../shared/database";
 import { LogEntriesService } from './LogEntriesService';
 
 describe('LogEntriesService', () => {
@@ -50,7 +50,7 @@ describe('LogEntriesService', () => {
     let result: string;
 
     beforeAll(async () => {
-      entryToDelete = logEntriesTable.find(r => r.logId === LOG_2_ID);
+      [entryToDelete] = await Database.getAllLogEntries(LOG_2_ID);
       result = await subject.deleteLogEntry(LOG_2_ID, entryToDelete!.id);
     });
 
