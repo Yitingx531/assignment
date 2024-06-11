@@ -1,5 +1,5 @@
 import { LogEntry } from "../../domain/entities/LogEntry";
-import { logEntriesTable, simulateDbSlowness } from '../../shared/database';
+import { Database } from '../../shared/database';
 import { RecordNotFoundError } from '../../shared/errors';
 import { LogEntriesPersistenceMapper } from "../mappers/LogEntriesPersistenceMapper";
 
@@ -7,15 +7,13 @@ export class LogEntriesRepository {
   constructor(protected logId: string) {}
 
   async createLogEntry(logEntry: LogEntry): Promise<LogEntry> {
-    await simulateDbSlowness(1000);
     const dto = LogEntriesPersistenceMapper.toPersistence(logEntry);
-    logEntriesTable.push(dto);
+    await Database.createLogEntry(dto);
     return logEntry;
   }
 
   async findById(logEntryId: string): Promise<LogEntry> {
-    await simulateDbSlowness(1000);
-    const record = logEntriesTable.find(le => le.id === logEntryId);
+    const record = await Database.findById(logEntryId);
     if (!record) {
       throw new RecordNotFoundError(`log entry not found for id: ${logEntryId}`);
     }
@@ -23,9 +21,7 @@ export class LogEntriesRepository {
   }
 
   async destroyLogEntry(logEntry: LogEntry): Promise<string> {
-    await simulateDbSlowness(1000);
-    const index = logEntriesTable.findIndex((le) => le.id === logEntry.id.value);
-    logEntriesTable.splice(index, 1);
+    await Database.deleteLogEntry(logEntry.id.value);
     return logEntry.id.value;
   }
 }
