@@ -48,6 +48,40 @@ These are the entry places to the client and server:
 
 We have built this project with the idea of minimizing setup time for candidates attempting to complete the challenge. In this process we have made a number of decisions regarding tooling that we think provide a robust, but easy to use development experience while giving you an idea of the type of development environment we use on a daily basis. Please feel free to modify the environment and tooling however you see fit.
 
+### Tooling used
+
+#### Node
+
+This project was built using Node 20 which is [an LTS version of Node](https://nodejs.org/en/about/releases/). It may cause issues (e.g. Yarn errors) if you try to run this project on a different version of Node so please ensure you're using Node 20.
+
+#### TypeScript
+
+This project was built with [TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html) because it is our language of choice. That being said, we encourage you to complete this project using your preference of JavaScript or TypeScript. We will not give any preferential treatment for choosing either language to complete the project.
+
+#### Package management
+
+We've chosen [yarn v4](https://yarnpkg.com/getting-started/usage) as the package manager for this code base. Since we're using node v20.12+ you may use [Corepack](https://yarnpkg.com/getting-started/install) to install yarn if you don't already have it installed.
+
+Yarn works similar to npm and many of the commands are similar, for example `yarn install` to install dependencies
+
+#### Bundling
+
+We have chosen [webpack](https://webpack.js.org/concepts/) to assist with transpiling and bundling both the client and server packages. This should allow you to see code changes in either package upon saving.
+
+### Code standards
+
+#### Linting
+
+We're using [ESLint](https://eslint.org/docs/user-guide/getting-started) and the [Airbnb's linting rules](https://www.npmjs.com/package/eslint-config-airbnb) with a few minor customizations.
+
+#### Formatting
+
+We have chosen [Prettier](https://prettier.io/docs/en/index.html) as a code formatter.
+
+### Testing
+
+[Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) were chosen as the testing libraries for this project. If you're adding tests, you're free to use these.
+
 ### Running the app
 
 #### Monorepo root
@@ -94,36 +128,10 @@ From the monorepo root
 $> yarn test
 ```
 
-## Tooling used
+## Domain
 
-### Node
+The information contained in this section isn't strictly necessary to complete the exercise. We're including it in case it helps in understanding some context around the code and its use cases.
 
-This project was built using Node 20 which is [an LTS version of Node](https://nodejs.org/en/about/releases/).
+The exercise contains domain objects called `LogEntries`. They elude to the existence of a Log via the `logId` reference on `LogEntries`. A Log is the parent object of `LogEntries` with a one-to-many relationship. Said another way, a Log _has_ many `LogEntries` but a `LogEntry` belongs to only one Log.
 
-### TypeScript
-
-This project was built with [TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html) because it is our language of choice. That being said, we encourage you to complete this project using your preference of JavaScript or TypeScript. We will not give any preferential treatment for choosing either language to complete the project.
-
-### Package management
-
-We've chosen [yarn v4](https://yarnpkg.com/getting-started/usage) as the package manager for this code base. Since we're using node v20.12+ you may use [Corepack](https://yarnpkg.com/getting-started/install) to install yarn if you don't already have it installed.
-
-Yarn works similar to npm and many of the commands are similar, for example `yarn install` to install dependencies
-
-### Bundling
-
-We have chosen [webpack](https://webpack.js.org/concepts/) to assist with transpiling and bundling both the client and server packages. This should allow you to see code changes in either package upon saving.
-
-### Code standards
-
-#### Linting
-
-We're using [ESLint](https://eslint.org/docs/user-guide/getting-started) and the [Airbnb's linting rules](https://www.npmjs.com/package/eslint-config-airbnb) with a few minor customizations.
-
-#### Formatting
-
-We have chosen [Prettier](https://prettier.io/docs/en/index.html) as a code formatter.
-
-### Testing
-
-[Jest](https://jestjs.io/docs/getting-started) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) were chosen as the testing libraries for this project. If you're adding tests, you're free to use these.
+We chose not to include a `Log` object in the exercise (except as a mock object in the `useLastVisitedLog` hook) in an effort to keep it lean. If it did exist as an object it would contain attributes such as `id`, `name` and `project_id`. The important thing to consider in this exercise is that when viewing `LogEntries`, we should only be looking at those that belong to the same Log and we should maintain the proper association between each `LogEntry` and its parent Log.
