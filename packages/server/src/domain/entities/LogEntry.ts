@@ -2,7 +2,7 @@ import { ValidationError } from "../../shared/errors";
 import { Entity } from "./Entity";
 import { Uuid } from "./Uuid";
 
-interface LogEntryProps {
+export interface LogEntryProps {
   logDate: Date;
   logValue: number;
   logId: string;

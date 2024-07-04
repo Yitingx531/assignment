@@ -86,8 +86,9 @@ export class Database {
     const index = allEntries.findIndex((le) => le.id === logEntryId);
     // return null if the entry doesn't exist
     if (index === -1) return null;
-    // update all entries
+     // update the log entry with the new data 
     allEntries[index] = { ...allEntries[index], ...updatedEntry, id: logEntryId };
+     // write the updated entries to the file
     await fs.writeFileSync(FILE_NAME, JSON.stringify(allEntries));
     // return updated entry
     return allEntries[index];
