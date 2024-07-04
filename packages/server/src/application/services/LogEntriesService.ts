@@ -2,6 +2,8 @@ import { CreateLogEntryRequest, LogEntryResponse } from "@mapistry/take-home-cha
 import { LogEntriesQueryRepository } from "../../persistence/repositories/LogEntriesQueryRepository";
 import { LogEntriesRepository } from "../../persistence/repositories/LogEntriesRepository";
 import { LogEntriesApiMapper } from "../mappers/LogEntriesApiMapper";
+import { LogEntriesRecord } from "../../shared/database";
+import { RecordNotFoundError } from "../../shared/errors";
 
 export class LogEntriesService {
   getLogEntries(logId: string): Promise<LogEntryResponse[]> {
@@ -22,4 +24,21 @@ export class LogEntriesService {
     const logEntry = await logEntryRepository.findById(logEntryId);
     return logEntryRepository.destroyLogEntry(logEntry);
   }
+
+  // function to edit a log entry
+  async editLogEntry(logId: string, logEntryId: string, updatedEntry: Partial<LogEntriesRecord>): Promise<LogEntryResponse> {
+    const logEntryRepository = new LogEntriesRepository(logId);
+
+    try {
+      const updatedLogEntry = await logEntryRepository.editLogEntry(logEntryId, updatedEntry);
+      const mapper = new LogEntriesApiMapper();
+      return mapper.toResponse(updatedLogEntry);
+    } catch (error) {
+      if (error instanceof RecordNotFoundError) {
+        throw new Error(`Log entry not found for id: ${logEntryId}`);
+      }
+      throw error;
+    }
+  }
+
 }
