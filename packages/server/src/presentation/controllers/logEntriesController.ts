@@ -14,7 +14,7 @@ logEntriesController.get('/logs/:logId/log-entries', async (req, res) => {
 
 logEntriesController.put('/logs/:logId/log-entries', async (req, res) => {
   const { logId } = req.params;
-  const { logEntry } = req.body;
+  const { logEntry } = req.body; // consider remove {} as the entire request body should be logEntry
   const logEntryService = new LogEntriesService();
   try {
     const logEntries = await logEntryService.createLogEntry(logId, logEntry);
@@ -46,5 +46,25 @@ logEntriesController.delete('/logs/:logId/log-entries/:logEntryId', async (req, 
     }
     res.json();
   }
-
 });
+
+  // add PUT route to edit log entries
+  logEntriesController.put('/logs/:logId/log-entries/:logEntryId', async (req, res) => {
+    const { logId, logEntryId } = req.params;
+    const updatedEntry = req.body;
+    const logEntryService = new LogEntriesService();
+    try {
+      const updatedLogEntry = await logEntryService.editLogEntry(logId, logEntryId, updatedEntry);
+      res.json(updatedLogEntry);
+    } catch (e: unknown) {
+      if (e instanceof ValidationError) {
+        res.status(HttpStatusCode.INVALID_DATA);
+        res.send(e.toString());
+      } else {
+        res.status(HttpStatusCode.SERVER_ERROR);
+        res.send();
+      }
+    }
+  });
+
+
