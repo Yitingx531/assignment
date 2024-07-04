@@ -78,6 +78,21 @@ export class Database {
     return logEntryId;
   }
 
+  // add function to edit a log entry
+  public static async editLogEntry(logEntryId: string, updatedEntry: Partial<LogEntriesRecord>): Promise<LogEntriesRecord | null> {
+    await this.simulateDbSlowness();
+    const db = await fs.readFileSync(FILE_NAME, 'utf8');
+    const allEntries = JSON.parse(db) as LogEntriesRecord[];
+    const index = allEntries.findIndex((le) => le.id === logEntryId);
+    // return null if the entry doesn't exist
+    if (index === -1) return null;
+    // update all entries
+    allEntries[index] = { ...allEntries[index], ...updatedEntry, id: logEntryId };
+    await fs.writeFileSync(FILE_NAME, JSON.stringify(allEntries));
+    // return updated entry
+    return allEntries[index];
+  }
+
   private static simulateDbSlowness(ms = 1000) {
     return new Promise(resolve => {
       setTimeout(resolve, ms);
