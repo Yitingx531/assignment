@@ -66,14 +66,33 @@ export function ViewLogEntries() {
     if (!selectedLogId) {
       return <Error message="Please select a log ID to view entries." />;
     }
-    return logEntries.length ?  <ViewLogEntriesTable logId={selectedLogId}  onCurrentEntry={handleCurrentEntry} /> : <ViewLogEntriesEmptyPage />
+    return logEntries.length ? (
+      <ViewLogEntriesTable 
+        logId={selectedLogId} 
+        onCurrentEntry={handleCurrentEntry} 
+      />
+    ) : (
+      <ViewLogEntriesEmptyPage />
+    );
   }
 
   return (
     <Container>
      <LogIdSelector onSelectLogId={setSelectedLogId} />
-    {isCreateEntryOpen && <CreateLogEntryModal handleClose={handleCloseModal} handleCreate={handleCreateLogEntry} />}
-    {isEditEntryOpen && currentLogEntry && <EditLogEntryModal handleClose={handleCloseModal} handleEdit={handleEditLogEntry} logEntry={currentLogEntry} />}
+     
+    {isCreateEntryOpen && 
+    <CreateLogEntryModal 
+    handleClose={handleCloseModal} 
+    handleCreate={handleCreateLogEntry} 
+    />}
+
+    {isEditEntryOpen && 
+    currentLogEntry && 
+    <EditLogEntryModal 
+    handleClose={handleCloseModal} 
+    handleEdit={handleEditLogEntry} 
+    logEntry={currentLogEntry} />}
+
     <ViewLogEntriesHeader
       onAddNew={handleAddNew}
       logName={selectedLogId ? `Log ID: ${selectedLogId}` : 'Select a Log'}

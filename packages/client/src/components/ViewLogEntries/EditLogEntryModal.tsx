@@ -3,7 +3,8 @@ import { Modal, ModalContent, StyledForm, Header, ButtonContainer, CloseButton }
 
 // I added this modal because there is already an existing modal, 
 // so I could import the already existing elements to make this work within the timeframe
-// TODO: However, if I had more time, I would create a reusable modal component and import that in both CreateLogEntryModal and EditLogEntryModal
+// TODO: However, if I had more time, I would create a reusable modal component and import 
+// TODO: that in both CreateLogEntryModal and EditLogEntryModal
 interface EditLogEntryProps {
   handleClose: () => void;
   handleEdit: (logEntry: LogEntryResponse) => void;
@@ -36,12 +37,17 @@ export function EditLogEntryModal({
           }}>
           <label htmlFor="logDate">
             Date:&nbsp;
-            <input type="date" name="logDate" defaultValue={new Date(logEntry.logDate).toISOString().substring(0, 10)}/>
+            <input type="date" 
+            name="logDate" 
+            defaultValue={new Date(logEntry.logDate).toISOString().substring(0, 10)}/>
           </label>
 
           <label htmlFor="logValue">
             Value:&nbsp;
-            <input type="text" name="logValue" defaultValue={logEntry.logValue}/>
+            <input 
+            type="text" 
+            name="logValue" 
+            defaultValue={logEntry.logValue}/>
           </label>
           <ButtonContainer>
             <button type="button" onClick={handleClose}>Cancel</button>
