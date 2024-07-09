@@ -64,5 +64,40 @@ describe('LogEntriesService', () => {
       expect(result).toBe(entryToDelete!.id);
     });
   })
+
+  describe('editLogEntry', () => {
+    const updatedEntry = {
+      logDate: '2024-06-01',
+      logValue: 45,
+    };
+    let entryToEdit: LogEntriesRecord | undefined;
+    let result: LogEntryResponse;
+
+    beforeAll(async () => {
+      const allEntries = await Database.getAllLogEntries(LOG_2_ID);
+      [entryToEdit] = allEntries;
+      result = await subject.editLogEntry(LOG_2_ID, entryToEdit!.id, {
+        logDate: new Date(updatedEntry.logDate), // convert to Date object
+        logValue: updatedEntry.logValue,
+      });
+    });
+
+    it('updates the log entry for the given id', async () => {
+      const allEntries = await subject.getLogEntries(LOG_2_ID);
+      const updatedLogEntry = allEntries.find(le => le.id === entryToEdit!.id);
+      expect(updatedLogEntry).toBeDefined();
+      if (updatedLogEntry) { // Add null check here
+        // eslint-disable-next-line jest/no-conditional-expect
+        expect(new Date(updatedLogEntry.logDate).toISOString()).toEqual(new Date(updatedEntry.logDate).toISOString());
+        // eslint-disable-next-line jest/no-conditional-expect
+        expect(updatedLogEntry.logValue).toEqual(updatedEntry.logValue);
+      }
+    });
+
+    it('returns the updated log entry with the new values', () => {
+      expect(new Date(result.logDate).toISOString()).toEqual(new Date(updatedEntry.logDate).toISOString());
+      expect(result.logValue).toEqual(updatedEntry.logValue);
+    });
+  });
 });
 

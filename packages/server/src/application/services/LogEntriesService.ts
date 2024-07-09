@@ -26,18 +26,27 @@ export class LogEntriesService {
   }
 
   // function to edit a log entry
-  async editLogEntry(logId: string, logEntryId: string, updatedEntry: Partial<LogEntriesRecord>): Promise<LogEntryResponse> {
-    const logEntryRepository = new LogEntriesRepository(logId);
-
+  async editLogEntry(
+    logId: string, 
+    logEntryId: string, 
+    updatedEntry: Partial<LogEntriesRecord>
+  ): Promise<LogEntryResponse> {
+    const repository = new LogEntriesRepository(logId);
+    const mapper = new LogEntriesApiMapper();
     try {
-      const updatedLogEntry = await logEntryRepository.editLogEntry(logEntryId, updatedEntry);
-      const mapper = new LogEntriesApiMapper();
+      // update the log entry in the repository
+      const updatedLogEntry = await repository.editLogEntry(logEntryId, updatedEntry);
       return mapper.toResponse(updatedLogEntry);
     } catch (error) {
       if (error instanceof RecordNotFoundError) {
-        throw new Error(`Log entry not found for id: ${logEntryId}`);
-      }
-      throw error;
+       throw error;
+      } 
+      throw new Error('Fail to edit the entry');
     }
+  }
+  
+  async getAllLogIds(): Promise<string[]> {
+    const logEntryRepository = new LogEntriesQueryRepository();
+    return logEntryRepository.findAllLogIds();
   }
 }

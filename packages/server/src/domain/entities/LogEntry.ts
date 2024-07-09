@@ -18,7 +18,7 @@ export class LogEntry extends Entity<LogEntryProps> {
 
   static create(createLogEntryProps: CreateLogEntryProps) {
     if (!this.isValid(createLogEntryProps)) {
-      throw new ValidationError('Cannot create log entry. Props are not valid.');
+      throw new ValidationError('Cannot create log entry. Props are not valid.'); 
     }
     return new LogEntry(createLogEntryProps);
   }

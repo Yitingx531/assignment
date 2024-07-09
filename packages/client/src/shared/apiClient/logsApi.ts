@@ -33,6 +33,7 @@ export async function createLogEntry({
     `/api/logs/${logId}/log-entries`,
     {
       body: JSON.stringify({ logEntry }),
+      // TODO: consider change this PUT request to a POST request for adding new log entries
       method: 'put',
       headers: {
         'content-type': 'application/json',
@@ -75,9 +76,25 @@ export async function editLogEntry(logEntry: LogEntryResponse): Promise<LogEntry
     },
 })
 if (!res.ok) {
-  throw new Error('Failed to create log entry');
+  throw new Error('Failed to edit log entry');
 }
 const editedLogEntry: LogEntryResponse = await res.json();
-console.log('edited log entry', editedLogEntry);
+
 return editedLogEntry;
+}
+
+// function to fetch log IDs from the server
+export async function fetchLogIds() {
+  const res = await fetch('/api/logs/log-ids', {
+    method: 'get',
+    headers: {
+      'content-type': 'application/json',
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch log IDs');
+  }
+  // return the array of log IDs
+  const logIds = await res.json();
+  return logIds;
 }
