@@ -7,7 +7,8 @@ interface CreateLogEntryProps {
   handleCreate: (logEntry: CreateLogEntryRequest) => void;
 }
 
-const Modal = styled.div`
+// added export statement here for use in EditLogEntryModal
+export const Modal = styled.div` 
   position: fixed;
   z-index: 1;
   left: 0;
@@ -18,7 +19,7 @@ const Modal = styled.div`
   background-color: rgba(0,0,0,0.4);
 `;
 
-const ModalContent = styled.div`
+export const ModalContent = styled.div`
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
@@ -32,7 +33,7 @@ interface CloseButtonProps {
   children: ReactNode;
 }
 
-const CloseButton = styled.button<CloseButtonProps>`
+export const CloseButton = styled.button<CloseButtonProps>`
   float: right;
 `;
 
@@ -41,7 +42,7 @@ interface FormProps {
   children: ReactNode;
 }
 
-const StyledForm = styled.form<FormProps>`
+export const StyledForm = styled.form<FormProps>`
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
@@ -57,11 +58,11 @@ const StyledForm = styled.form<FormProps>`
   }
 `;
 
-const Header = styled.p`
+export const Header = styled.p`
   padding: 0.4rem;
   font-size: 1.2rem;
 `
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   justify-content: right;
 
@@ -86,6 +87,8 @@ export function CreateLogEntryModal({
               logValue: { value: string };
             };
             const logEntry = {
+              // the date would always be 1 day off with previous implementation, so I added T00:00:00 to ensure date is interpreted as local midnight
+              // For more info: https://medium.com/@sungbinkim98/is-your-javascript-date-one-day-off-c56afb37e4bc
               logDate: new Date(target.logDate.value),
               logValue: parseInt(target.logValue.value, 10),
             }

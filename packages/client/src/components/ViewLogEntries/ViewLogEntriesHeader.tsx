@@ -16,7 +16,6 @@ export function ViewLogEntriesHeader({
   onAddNew,
   logName,
 }: ViewLogEntriesHeaderProps) {
-
   return (
     <StyledLogEntriesHeader>
       <span>{logName}</span>

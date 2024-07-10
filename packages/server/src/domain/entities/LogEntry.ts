@@ -2,7 +2,7 @@ import { ValidationError } from "../../shared/errors";
 import { Entity } from "./Entity";
 import { Uuid } from "./Uuid";
 
-interface LogEntryProps {
+export interface LogEntryProps {
   logDate: Date;
   logValue: number;
   logId: string;
@@ -18,7 +18,7 @@ export class LogEntry extends Entity<LogEntryProps> {
 
   static create(createLogEntryProps: CreateLogEntryProps) {
     if (!this.isValid(createLogEntryProps)) {
-      throw new ValidationError('Cannot create log entry. Props are not valid.');
+      throw new ValidationError('Cannot create log entry. Props are not valid.'); 
     }
     return new LogEntry(createLogEntryProps);
   }
