@@ -16,7 +16,7 @@ logEntriesController.get('/logs/:logId/log-entries', async (req, res) => {
 // TODO: consider changing this to post request
 logEntriesController.put('/logs/:logId/log-entries', async (req, res) => {
   const { logId } = req.params;
-  const { logEntry } = req.body; // consider remove {} as the entire request body should be logEntry
+  const { logEntry } = req.body; 
   const logEntryService = new LogEntriesService();
   try {
     const logEntries = await logEntryService.createLogEntry(logId, logEntry);
